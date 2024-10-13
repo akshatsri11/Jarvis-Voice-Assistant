@@ -42,4 +42,15 @@ $(document).ready(function () {
     $("#SiriWave").attr("hidden", false);
     eel.allCommand()();
   });
+
+  // Shortcut key to wake up Jarvis
+  function doc_keyUp(e) {
+    if (e.key === "j" && e.metaKey) {
+      eel.playAssistantSound();
+      $("#Oval").attr("hidden", true);
+      $("#SiriWave").attr("hidden", false);
+      eel.allCommand()();
+    }
+  }
+  document.addEventListener("keyup", doc_keyUp, false);
 });

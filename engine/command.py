@@ -14,7 +14,6 @@ def speak(text):
 
 
 def takeCommand():
-
     r = sr.Recognizer()
     with sr.Microphone() as source:
         print('listening...')
@@ -38,16 +37,19 @@ def takeCommand():
 @eel.expose
 def allCommand():
 
-    query = takeCommand()
+    try:
+        query = takeCommand()
 
-    if "open" in query:
-        from engine.features import openCommand
-        openCommand(query)
-    
-    elif "on youtube" in query:
-        from engine.features import PlayYoutube
-        PlayYoutube(query)
-    else:
-        print("not run")
+        if "open" in query:
+            from engine.features import openCommand
+            openCommand(query)
+        
+        elif "on youtube" in query:
+            from engine.features import PlayYoutube
+            PlayYoutube(query)
+        else:
+            print("not run")
 
-    eel.ShowHood()
+        eel.ShowHood()
+    except:
+        print("ERROR")
