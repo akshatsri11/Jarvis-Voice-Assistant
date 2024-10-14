@@ -3,7 +3,7 @@ import multiprocessing
 
 
 def startJarvis():
-    print("process 1 is running")
+    print("process 1 is running\n")
     from main import start
     start()
 
