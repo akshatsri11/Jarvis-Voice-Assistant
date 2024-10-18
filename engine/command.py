@@ -6,11 +6,12 @@ import time
 def speak(text):
     text = str(text)
     engine = pyttsx3.init('sapi5')
-    voices = engine.getProperty('voices')       #getting details of current voice
-    engine.setProperty('voice', voices[1].id)   #changing index, changes voices. 1 for female
-    engine.setProperty('rate', 170)     # setting up new voice rate
+    voices = engine.getProperty('voices') 
+    engine.setProperty('voice', voices[0].id)
+    engine.setProperty('rate', 174)
     eel.DisplayMessage(text)
     engine.say(text)
+    eel.receiverText(text)
     engine.runAndWait()
 
 
@@ -28,6 +29,8 @@ def takeCommand():
         eel.DisplayMessage('recognizing...')
         query = r.recognize_google(audio, language = 'en-in')
         print(f"user said: {query}")
+        eel.DisplayMessage(query)
+        time.sleep(2)
         
     
     except Exception as e:
@@ -36,10 +39,17 @@ def takeCommand():
     return query.lower()
 
 @eel.expose
-def allCommand():
-
-    try:
+def allCommand(message = 1):
+    print(message)
+    if message == 1:
         query = takeCommand()
+        eel.senderText(query)
+        print(query)
+    else:
+        query = message
+        eel.senderText(query)
+
+    try:      
 
         if "open" in query:
             from engine.features import openCommand
@@ -83,6 +93,8 @@ def allCommand():
             from engine.features import chatBot
             chatBot(query)
 
-        eel.ShowHood()
+        
     except:
         print("ERROR")
+
+    eel.ShowHood()

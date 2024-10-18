@@ -3,13 +3,13 @@ import multiprocessing
 
 
 def startJarvis():
-    print("process 1 is running")
+    print("Jarvis is activated")
     from main import start
     start()
 
 # To run Hot Word
 def listenHotWords():
-    print("process 2 is running")
+    print("Hot Word is activated")
     from engine.features import hotword
     hotword()
 
