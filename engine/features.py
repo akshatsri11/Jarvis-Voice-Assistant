@@ -198,17 +198,47 @@ def sendMessage(message, mobileNo, name):
     time.sleep(1)
     keyEvent(3)
     # open sms app
-    tapEvents(136, 2220)
+    tapEvents(256, 2220)
     #start chat
-    tapEvents(819, 2192)
+    tapEvents(949, 2260)
     # search mobile no
+    tapEvents(250,350)
     adbInput(mobileNo)
     #tap on name
     tapEvents(601, 574)
     # tap on input
-    tapEvents(390, 2270)
+    tapEvents(400, 1500)
     #message
     adbInput(message)
     #send
-    tapEvents(957, 1397)
+    tapEvents(990, 1500)
     speak("message send successfully to "+name)
+
+def recordVideo(duration):
+    from engine.helper import goback, keyEvent, tapEvents, adbInput
+    import time
+    speak("starting video recording")
+    goback(4)
+    time.sleep(1)
+    keyEvent(3)
+    
+    # Open the camera app
+    tapEvents(750, 2200)
+    time.sleep(2)
+    
+    # Switch to video mode
+    tapEvents(970, 1780)
+    time.sleep(1)
+
+    # Start recording
+    tapEvents(500, 2050)
+    speak("video recording started")
+
+    # Wait for the specified duration
+    time.sleep(duration)
+    
+    # Stop recording
+    tapEvents(500, 2050)
+    speak("video recording stopped")
+
+    speak("video recorded successfully")

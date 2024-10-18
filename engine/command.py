@@ -88,6 +88,9 @@ def allCommand(message = 1):
                         message = 'video call'
                                         
                     whatsApp(contact_no, query, message, name)
+        elif "video recording" in query:
+            from engine.features import recordVideo
+            recordVideo(10)
 
         else:
             from engine.features import chatBot
