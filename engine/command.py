@@ -4,6 +4,7 @@ import eel
 import time
 
 def speak(text):
+    text = str(text)
     engine = pyttsx3.init('sapi5')
     voices = engine.getProperty('voices')       #getting details of current voice
     engine.setProperty('voice', voices[1].id)   #changing index, changes voices. 1 for female
@@ -79,7 +80,8 @@ def allCommand():
                     whatsApp(contact_no, query, message, name)
 
         else:
-            print("not run")
+            from engine.features import chatBot
+            chatBot(query)
 
         eel.ShowHood()
     except:
